@@ -312,13 +312,11 @@ class Reservation(ModifiableModel):
                 'end_dt': self.end,
                 'time_range': self.format_time(),
                 'number_of_participants': self.number_of_participants,
+                'unit': self.resource.unit.name if self.resource.unit else None,
+                'extra_content': self.resource.reservation_confirmed_notification_extra,
             }
-            if self.resource.unit:
-                context['unit'] = self.resource.unit.name
-            if self.can_view_access_code(user) and self.access_code:
+            if self.can_view_access_code(user):
                 context['access_code'] = self.access_code
-            if self.resource.reservation_confirmed_notification_extra:
-                context['extra_content'] = self.resource.reservation_confirmed_notification_extra
         return context
 
     def send_reservation_mail(self, notification_type, user=None):

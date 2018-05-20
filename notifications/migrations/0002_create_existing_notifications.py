@@ -191,7 +191,7 @@ Unit: {{ unit }}
 Starts: {{ begin }}
 Ends: {{ end }}
 
-{% if access_code %}
+{% if access_code is defined and access_code %}
 Your access code for the resource: {{ access_code }}
 
 {% endif %}
@@ -208,7 +208,7 @@ Toimipiste: {{ unit }}
 Alkaa: {{ begin }}
 Loppuu: {{ end }}
 
-{% if access_code %}
+{% if if access_code is defined and access_code %}
 Pääsykoodisi tilaan: {{ access_code }}
 
 {% endif %}
